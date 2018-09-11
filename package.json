@@ -5,8 +5,8 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start": "node %NODE_DEBUG_OPTION% ./bin/www",
-    "debug": "set DEBUG=PocketManager-Node:* & npm start",
+    "start": "node ./bin/www",
+    "debug": "set DEBUG=PocketManager-Node:* & node --inspect ./bin/www",
     "run webpack": "webpack -d --watch",
     "watch sass": "sass --watch source/scss/style.scss:public/assets/style.css",
     "build": "webpack -p",

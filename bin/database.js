@@ -80,11 +80,21 @@ let DB = {
 
     /**
      *
-     * @param query
-     * @param includeFields
+     * @param query {(string|array)}
+     * @param [params] {(array|boolean)}
+     * @param [includeFields] {boolean}
      * @returns {Promise<{results: object, fields: object}>}
      */
-    queryp: function(query, includeFields) {
+    queryp: function(query, params, includeFields) {
+        if (typeof params === "boolean") {
+            includeFields = params;
+            params = undefined;
+        }
+        if (query instanceof Array) {
+            params = query[1];
+            query = query[0];
+        }
+
         return new Promise((resolve, reject) => {
             const callback = function(error, results, fields) {
                 if (error) reject(error);
@@ -95,10 +105,8 @@ let DB = {
                     });
                 }
             };
-            if (typeof query === "object") {
-                let tmp = Object.values(query);
-                //console.log(tmp);
-                DB.connection.query(tmp[0], tmp[1], callback);
+            if (typeof params !== "undefined") {
+                DB.connection.query(query, params, callback);
             } else
                 DB.connection.query(query, callback)
         });
