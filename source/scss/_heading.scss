@@ -1,0 +1,63 @@
+#header {
+  transition: padding-left 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+  width:100%;
+  position:fixed;
+  z-index: 500;
+  & > .navbar {
+    width:100%;
+    background: whitesmoke;
+    box-shadow: $shadow-lt;
+  }
+  .navbar-header {
+    display: flex;
+  }
+  //margin-bottom:1rem;
+  //padding-left: 60px;
+
+  .navigation-handler {
+    animation: navbar-icon 0.9s cubic-bezier(0.680, -0.550, 0.265, 1.550) both;
+    color: $primary;
+  }
+
+  #wrapper.nav-open & {
+    padding-left: inherit;
+    @media(min-width: 768px) {
+      & {
+        padding-left: $maxWidth - 53
+      }
+    }
+  }
+  #wrapper.nav-hidden & {
+    padding-left: inherit;
+    @media(min-width: 425px) {
+      & {
+        //padding-left: $miniWidth - 53;
+      }
+    }
+  }
+  #wrapper.nav-block & {
+    padding-left: $hiddenWidth !important;
+  }
+  .navigation-handler {
+    margin-right: .75rem;
+  }
+  #wrapper.nav-mini & {
+    .navigation-handler {
+      //margin-right: 1.5rem;
+    }
+  }
+  h4, .h4 {
+    color: $primary;
+    margin-bottom: 0;
+    transition: .4s all cubic-bezier(0.455, 0.030, 0.515, 0.955);;
+    margin-left: 1rem;
+    #wrapper:not(.nav-open) & {
+      //margin-left: 3.15rem;
+    }
+  }
+}
+@media(max-width: 475px) {
+  #wrapper.nav-open {
+    overflow-y: hidden;
+  }
+}

@@ -1,0 +1,11 @@
+.table {
+  tr > td { vertical-align: middle; }
+}
+
+.container-fluid {
+  animation: fadeIn .25s ease-in
+}
+
+.v-none {
+  visibility: hidden;
+}

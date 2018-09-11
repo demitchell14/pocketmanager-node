@@ -1,0 +1,19 @@
+footer {
+  transition: padding-left 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+  background: $primary;
+  @media(min-width: 768px) {
+    .wrapper.nav-open & {
+      padding-left: 260px;
+    }
+  }
+  .wrapper.nav-mini & {
+    padding-left: 60px;
+  }
+  .wrapper.nav-hidden & {
+    padding-left: 0;
+  }
+
+  & > div {
+    padding: 3rem 2rem;
+  }
+}

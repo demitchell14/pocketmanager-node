@@ -1,0 +1,145 @@
+body {
+  height: 100%;
+}
+#wrapper {
+  overflow-x: hidden;
+  height:100%;
+  height:100vh;
+
+}
+
+#app {
+  & {
+
+    transition: padding-left 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+    padding-top: 60px;
+    background: $offwhite;
+    min-width: 320px;
+    overflow-x: hidden;
+    min-height:80%;
+    //margin-left: 300px;
+    box-shadow: inset 0 0 50px 0 #fff;
+    @media(min-width: 768px) {
+      #wrapper.nav-open & {
+        padding-left: $maxWidth
+      }
+    }
+
+    @media(max-width: 768px) {
+      #wrapper.nav-open & {
+        pointer-events: none;
+      }
+    }
+    #wrapper.nav-mini & {
+      padding-left: $miniWidth;
+    }
+    #wrapper.nav-hidden & {
+      padding-left: $hiddenWidth;
+    }
+    #wrapper.nav-block & {
+      padding-left: $hiddenWidth !important;
+    }
+    @media(min-width: 425px) {
+      #wrapper.nav-hidden & {
+        //padding-left: $miniWidth;
+      }
+    }
+  }
+}
+
+main {
+  //overflow:hidden;
+  transition: padding-left 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+  padding-top: 1rem;
+  min-height: 80vh;
+  background: $offwhite;
+  min-width: 320px;
+  overflow-x: hidden;
+
+  header ~ &, header + & {
+    padding-top:$miniWidth;
+  }
+
+  @media(min-width: 768px) {
+    #wrapper.nav-open & {
+      padding-left: $maxWidth
+    }
+  }
+  #wrapper.nav-mini & {
+    padding-left: $miniWidth;
+  }
+  #wrapper.nav-hidden & {
+    padding-left: $hiddenWidth;
+  }
+
+  & > .container-fluid {
+    padding:0;
+
+    @media(min-width: 425px) {
+      & {
+        padding: 0 15px
+      }
+    }
+  }
+
+}
+
+.card {
+  h3,h4,h5 {
+    margin-bottom: 0;
+  }
+  border:none;
+
+  .entry-list {
+    .list-group-item {
+      padding: 0;
+      //& > .media > * { padding: .75rem 0;}
+    }
+    .entry-icon {
+      padding: .75rem;
+    }
+    .entry-details {
+      flex-grow: 1;
+      padding: .75rem;
+    }
+    .entry-expand {
+      padding: 0 .75rem;
+
+      & > div {
+        padding-bottom: .75rem;
+      }
+    }
+  }
+
+  & > .card-body {
+    padding: 0;
+    & > div {
+      padding: 0;
+      @media(min-width: 425px) {
+        & {
+          padding: 0 1.25rem
+        }
+      }
+    }
+  }
+
+  & > .card-heading {
+    //display:flex;
+    justify-content: space-between;
+    padding: .5rem 1rem;
+    color: $primary;
+    & h5 {
+      display: flex;
+    }
+  }
+}
+
+.profile_img {
+  background-image: url(/assets/images/user_profile_bg_1.jpg);
+  background-size: cover;
+  background-blend-mode: luminosity;
+  & > div {
+    background: fade_out($primary, .55);
+    //background: rgba(0,0,0,.45);
+  }
+}
