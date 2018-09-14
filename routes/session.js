@@ -7,16 +7,30 @@ const DB        = require("../bin/database");
 const Functions = require("../bin/functions");
 const UIDGenerator = require("uid-generator");
 
-const sanitizer = Functions.sanitizer;
+const AuthorizationService = require("../middleware/authorizationservice");
 
 const { check, validationResult } = require('express-validator/check');
 
+const sanitizer = Functions.sanitizer;
 
 
-router.get("/session", function(req, res, next) {
+const authorizationRequired = AuthorizationService({
+    mode: "allow", // {"block", "allow"}
+    run: {
+        header: ["token"],
+        //session: ["user"],
+        session: {user: "email"},
+    },
+});
+
+router.get("/session", authorizationRequired.middleware, function(req, res, next) {
     const session = req.session;
+    console.log(req.AuthorizationService);
+    //console.log(req);
+    //console.log(this);
     //console.log(session);
     if (session.user) {
+
         res.send({loggedIn: true, session: session.user});
     } else {
         res.status(210);
