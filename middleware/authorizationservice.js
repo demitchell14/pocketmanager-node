@@ -161,13 +161,25 @@ const AuthorizationService = function(opts) {
                 get() {
                     return this.results;
                 }
+                errors() {
+                    return this.results.errors || [];
+                }
 
                 add(key, value) {
                     if (typeof value === "undefined") {
                         value = key;
                         key = undefined;
                     }
+                    let errors;
+                    if (value.errors) {
+                        errors = value.errors;
+                        value.errors = undefined;
+                    }
                     Object.assign(this.results, value);
+                    if (errors) {
+                        this.results.errors.push(errors);
+                        //Object.assign(, errors);
+                    }
                     //this.results[key] = value;
                     return this;
                 }
@@ -176,7 +188,7 @@ const AuthorizationService = function(opts) {
             let auth = new AuthorizationService();
             auth.add("runnables", runnables);
             auth.add("required", required);
-            console.log(auth.get());
+            console.log(auth.errors());
             req.AuthorizationService = auth;
 
             next();
