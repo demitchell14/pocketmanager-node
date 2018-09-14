@@ -13,6 +13,7 @@
     "build-css": "sass source/scss/style.scss:public/assets/style.css && postcss --use autoprefixer -o public/assets/style.prefix.css public/assets/style.css && postcss --use cssnano -o public/assets/style.min.css public/assets/style.prefix.css --no-map",
     "LiveReloadJS": "livereload public"
   },
+  "browserslist": ["last 4 version"],
   "author": "",
   "license": "ISC",
   "dependencies": {
